@@ -1,0 +1,11 @@
+{
+  "name": "ascii-wallpapers",
+  "owner": { "name": "deaneeth" },
+  "plugins": [
+    {
+      "name": "ascii-wallpaper-collection",
+      "source": "./",
+      "description": "Eleven live ASCII-tile wallpapers and matching themes for Claude Code in Claude Desktop, with frosted panels, a /wallpaper picker and your handle signed in."
+    }
+  ]
+}

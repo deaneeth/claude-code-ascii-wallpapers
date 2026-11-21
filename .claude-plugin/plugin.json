@@ -1,0 +1,33 @@
+{
+  "name": "ascii-wallpaper-collection",
+  "version": "1.0.0",
+  "description": "Eleven live ASCII-tile wallpapers for Claude Code in Claude Desktop: silicon, attention, code rain, outrun, aurora, orbit, rainy window, zen garden and more, with frosted panels, a /wallpaper picker and your handle signed in.",
+  "author": {
+    "name": "deaneeth",
+    "url": "https://github.com/deaneeth"
+  },
+  "homepage": "https://github.com/deaneeth/claude-code-ascii-wallpapers",
+  "repository": "https://github.com/deaneeth/claude-code-ascii-wallpapers",
+  "license": "MIT",
+  "keywords": [
+    "claude-code",
+    "claude-desktop",
+    "wallpaper",
+    "theme",
+    "ascii",
+    "ascii-art",
+    "live-wallpaper",
+    "animated",
+    "svg"
+  ],
+  "types": "./types/index.d.ts",
+  "userConfig": {
+    "name": {
+      "type": "string",
+      "title": "Your handle",
+      "description": "Signed into the scenes: the ~/name prompt in a corner, the title block on Blueprint, the prompt on Night Shift. Letters, digits . _ - only, 16 at most.",
+      "default": "dev",
+      "required": false
+    }
+  }
+}
