@@ -1,7 +1,7 @@
 {
   "name": "ascii-wallpaper-collection",
-  "version": "1.0.0",
-  "description": "Eleven live ASCII-tile wallpapers for Claude Code in Claude Desktop: silicon, attention, code rain, outrun, aurora, orbit, rainy window, zen garden and more, with frosted panels, a /wallpaper picker and your handle signed in.",
+  "version": "2.0.0",
+  "description": "51 live ASCII-tile wallpapers for Claude Code in Claude Desktop, in five modes (Focus, Chill, Nature, Space, Energy): frosted panels, matching themes, a /wallpaper picker and your handle signed in.",
   "author": {
     "name": "deaneeth",
     "url": "https://github.com/deaneeth"
@@ -18,7 +18,10 @@
     "ascii-art",
     "live-wallpaper",
     "animated",
-    "svg"
+    "svg",
+    "focus",
+    "lofi",
+    "retro"
   ],
   "types": "./types/index.d.ts",
   "userConfig": {

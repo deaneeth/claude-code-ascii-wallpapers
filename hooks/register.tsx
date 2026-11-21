@@ -1,79 +1,112 @@
-// Claude Code ASCII Wallpapers: live ASCII-tile wallpapers behind the chat in Claude Desktop.
-// Eleven scenes, each with its own colors and frosted panels, a /wallpaper picker above the prompt, and a handle
-// setting that signs your name into the scenes. The pick is kept for the next session.
+// ASCII Wallpaper Collection: 51 live ASCII-tile wallpapers behind the chat in Claude Desktop, in five modes
+// (Focus, Chill, Nature, Space, Energy). Each scene has its own colors and frosted panels, a /wallpaper picker sits
+// above the prompt, and a handle setting signs your name into the scenes. The pick is kept for the next session.
 import { atom, read, update } from 'claude-code'
 import type { EngineInterface, Register, ThemeSetArgs } from 'claude-code'
 
 import { SCENES } from './art.js'
+import { hsl } from './engine.js'
 import { makeColors } from './make-colors.js'
 
 const PLUGIN = 'ascii-wallpaper-collection'
-// bump with each change to art.js: a new scene name makes the app draw the new picture, not one it kept
-const BUILD = 1
+// bump with each change to a scene: a new scene name makes the app draw the new picture, not one it kept
+const BUILD = 2
 
 type Key = keyof typeof SCENES
 type Tone = 'dark' | 'light'
-type Roles = { accent: string; danger: string; success: string; warning: string; pro: string }
-type Wall = {
-  key: Key
-  name: string
-  tone: Tone
-  blurb: string
-  alt: string
-  glass: string
-  s: [string, string, string, string]
-  t: [string, string, string]
-  roles: Roles
-}
+type Mode = 'focus' | 'chill' | 'nature' | 'space' | 'energy'
+type Wall = { key: Key; name: string; mode: Mode; tone: Tone; hue: number; accent: string; blurb: string }
 
-// Order is the picker's order; the first nine take the hotkeys 1 to 9.
-const WALLS: Wall[] = [
-  { key: 'silicon', name: 'Silicon', tone: 'dark', blurb: 'a die waking up', glass: '#080d0c', alt: 'Copper traces and chips, bits streaming in, processing elements lighting in a wave',
-    s: ['#0c1412', '#111c19', '#172622', '#1b2c27'], t: ['#e6f1ec', '#b9ccc4', '#92aaa1'], roles: { accent: '#d4863f', danger: '#e0594d', success: '#35d6a0', warning: '#e0b04a', pro: '#8a86f0' } },
-  { key: 'attention', name: 'Attention', tone: 'dark', blurb: 'heads reading tokens', glass: '#09071a', alt: 'Two attention matrices in violet and amber, a query row sweeping down, tokens drifting',
-    s: ['#0e0c1c', '#151229', '#1c1835', '#211c3d'], t: ['#ece9fb', '#c4bfe8', '#9c97c9'], roles: { accent: '#8b7cf6', danger: '#ec5f7a', success: '#4fd2a0', warning: '#f0b04a', pro: '#c58bf0' } },
-  { key: 'iron', name: 'Iron', tone: 'dark', blurb: 'one more rep', glass: '#0a0706', alt: 'A loaded barbell lifting under an ember glow, chalk rising, a rep counter ticking',
-    s: ['#130f0d', '#1b1512', '#231b17', '#2a201b'], t: ['#f2ebe4', '#cfc3b8', '#a99b8e'], roles: { accent: '#ff7a3d', danger: '#e8544a', success: '#7bc47a', warning: '#f0b64a', pro: '#c08ae8' } },
-  { key: 'night', name: 'Night Shift', tone: 'dark', blurb: 'moon, code, a prompt', glass: '#060a1c', alt: 'A crescent moon, stars, clouds sliding by, code scrolling and a blinking prompt',
-    s: ['#090d1f', '#0f1530', '#151c3c', '#1a2246'], t: ['#e9ecfb', '#bcc3e6', '#959dc8'], roles: { accent: '#8fb5ff', danger: '#ff7f8f', success: '#7ee2a8', warning: '#ffd27a', pro: '#c79bff' } },
-  { key: 'codeRain', name: 'Code Rain', tone: 'dark', blurb: 'green phosphor', glass: '#020a05', alt: 'Columns of green code falling through the dark',
-    s: ['#06110a', '#0a1a10', '#0f2216', '#13291b'], t: ['#e3f7e9', '#b4d6bf', '#8cb199'], roles: { accent: '#3dff8a', danger: '#ff6b6b', success: '#5fe39a', warning: '#e8c84a', pro: '#9fa8ff' } },
-  { key: 'outrun', name: 'Outrun', tone: 'dark', blurb: 'neon horizon', glass: '#0d031f', alt: 'A sliced sun over a neon grid, mountains, a road of light rolling toward you',
-    s: ['#0e0620', '#150a2e', '#1d1040', '#231450'], t: ['#f3ecff', '#cfc2ee', '#a597cf'], roles: { accent: '#ff4fd8', danger: '#ff5c7a', success: '#4fe8b0', warning: '#ffb347', pro: '#38e8ff' } },
-  { key: 'aurora', name: 'Aurora', tone: 'dark', blurb: 'northern lights', glass: '#050c14', alt: 'Ribbons of green, violet and teal light rippling over a pine ridge under stars',
-    s: ['#06141b', '#0a1d27', '#0f2833', '#13303d'], t: ['#e6f6f3', '#b7d8d2', '#8fb6af'], roles: { accent: '#2dd4bf', danger: '#ff7a7a', success: '#5dffb0', warning: '#f0c060', pro: '#9b8cff' } },
-  { key: 'orbit', name: 'Orbit', tone: 'dark', blurb: 'a ringed planet', glass: '#07070f', alt: 'A banded planet with a ring and two satellites going round, a grey moon drifting by',
-    s: ['#0b0b16', '#12121f', '#191a2b', '#1e2034'], t: ['#ececf7', '#c3c4dc', '#9c9db8'], roles: { accent: '#e0a35c', danger: '#ff6b6b', success: '#6fd6a0', warning: '#f0c060', pro: '#9b9cff' } },
-  { key: 'rainy', name: 'Rainy Window', tone: 'dark', blurb: 'coffee and rain', glass: '#080d13', alt: 'Rain on a window over blurred city lights, a mug steaming on the sill',
-    s: ['#0b1118', '#101922', '#16222d', '#1b2a37'], t: ['#e8eef5', '#bccad8', '#94a5b6'], roles: { accent: '#ffb454', danger: '#ff7a8a', success: '#6fd6a0', warning: '#ffb454', pro: '#9cb4ff' } },
-  { key: 'blueprint', name: 'Blueprint', tone: 'light', blurb: 'daylight drafting', glass: '#eaf3fb', alt: 'A chip drawn as a blueprint, bits moving along its traces, scrolling clock and data lines',
-    s: ['#d9e8f4', '#e3eff8', '#edf5fb', '#edf5fb'], t: ['#0e2233', '#2f4a60', '#46627a'], roles: { accent: '#1f6fb2', danger: '#c9403a', success: '#2f8a52', warning: '#a86f14', pro: '#6d4f94' } },
-  { key: 'zen', name: 'Zen Garden', tone: 'light', blurb: 'raked sand, falling petals', glass: '#f6efe0', alt: 'Raked sand rippling around mossy stones while petals drift down',
-    s: ['#ece3d0', '#f3ecdc', '#faf6ea', '#faf6ea'], t: ['#2a241a', '#544a38', '#6a5f48'], roles: { accent: '#2f6f8f', danger: '#b3392f', success: '#4e7d3a', warning: '#a86f14', pro: '#6d4f94' } },
+// The five modes. Work mode is Focus; enjoy mode is Energy.
+const MODES: { key: Mode; name: string; blurb: string; hotkey: string; aliases: string[] }[] = [
+  { key: 'focus', name: 'Focus', blurb: 'work mode: calm, readable, low-distraction', hotkey: 'f', aliases: ['work', 'deep', 'calm'] },
+  { key: 'chill', name: 'Chill', blurb: 'cozy and slow', hotkey: 'c', aliases: ['cozy', 'relax'] },
+  { key: 'nature', name: 'Nature', blurb: 'weather, water and mountains', hotkey: 'n', aliases: ['outdoors', 'weather'] },
+  { key: 'space', name: 'Space', blurb: 'the dark between things', hotkey: 's', aliases: ['cosmos', 'sky'] },
+  { key: 'energy', name: 'Energy', blurb: 'enjoy mode: loud, bright, moving', hotkey: 'e', aliases: ['enjoy', 'fun', 'hype', 'play'] },
 ]
+
+// name, key, mode, tone, hue, accent, one-line blurb
+const WALLS: Wall[] = (
+  [
+    // Focus
+    ['Silicon', 'silicon', 'focus', 'dark', 160, '#d4863f', 'a die waking up'],
+    ['Attention', 'attention', 'focus', 'dark', 255, '#8b7cf6', 'heads reading tokens'],
+    ['Commit Graph', 'gitGraph', 'focus', 'dark', 215, '#58a6ff', 'branches and merges'],
+    ['Network Mesh', 'mesh', 'focus', 'dark', 195, '#4fd0e8', 'packets on a graph'],
+    ['Server Room', 'serverRack', 'focus', 'dark', 210, '#58a6ff', 'racks and blinking lights'],
+    ['Terminal', 'terminal', 'focus', 'dark', 38, '#ffb000', 'amber phosphor logs'],
+    ['Library', 'library', 'focus', 'dark', 25, '#ffb454', 'shelves, a lamp, dust'],
+    ['Constellations', 'constellations', 'focus', 'dark', 225, '#8aa0ff', 'stars joined by lines'],
+    ['Blueprint', 'blueprint', 'focus', 'light', 210, '#1f6fb2', 'daylight drafting'],
+    ['Graph Paper', 'graphPaper', 'focus', 'light', 210, '#1f6fb2', 'a curve being traced'],
+    ['Zen Garden', 'zen', 'focus', 'light', 40, '#2f6f8f', 'raked sand, falling petals'],
+    ['Tide', 'tide', 'focus', 'light', 200, '#2f7fa8', 'a slow sea at dawn'],
+    // Chill
+    ['Night Shift', 'night', 'chill', 'dark', 228, '#8fb5ff', 'moon, code, a prompt'],
+    ['Rainy Window', 'rainy', 'chill', 'dark', 210, '#ffb454', 'coffee and rain'],
+    ['Snow Cabin', 'snowCabin', 'chill', 'dark', 222, '#ffcf6a', 'a lit window in the snow'],
+    ['Lighthouse', 'lighthouse', 'chill', 'dark', 215, '#fff2b0', 'a beam over black water'],
+    ['Campfire', 'campfire', 'chill', 'dark', 20, '#ff9a3c', 'flames and sparks'],
+    ['Lo-fi Room', 'lofi', 'chill', 'dark', 270, '#ffb86a', 'string lights and a desk'],
+    ['Lava Lamp', 'lavaLamp', 'chill', 'dark', 285, '#ff7ac0', 'slow rising blobs'],
+    ['Night Train', 'nightTrain', 'chill', 'dark', 205, '#ffd070', 'lit windows crossing hills'],
+    ['Cherry Blossom', 'cherry', 'chill', 'light', 350, '#d84a78', 'petals on the wind'],
+    ['Autumn', 'autumn', 'chill', 'dark', 15, '#f0a030', 'bare trees, falling leaves'],
+    // Nature
+    ['Aurora', 'aurora', 'nature', 'dark', 190, '#2dd4bf', 'northern lights'],
+    ['Misty Peaks', 'mist', 'nature', 'light', 215, '#4a6a9c', 'ridges in the fog'],
+    ['Dunes', 'dunes', 'nature', 'light', 35, '#a8582a', 'sand, wind, a caravan'],
+    ['Canyon', 'canyon', 'nature', 'dark', 12, '#ffb27a', 'red stone and a river'],
+    ['Ocean Sunset', 'oceanSunset', 'nature', 'dark', 300, '#ffa070', 'the sun going under'],
+    ['Waterfall', 'waterfall', 'nature', 'dark', 175, '#7ac8e8', 'spray and a rainbow'],
+    ['Deep Sea', 'deepSea', 'nature', 'dark', 200, '#7ad8ff', 'light rays and an angler'],
+    ['Bamboo Grove', 'bamboo', 'nature', 'dark', 140, '#7ad88a', 'stalks swaying in the dark'],
+    ['Thunderstorm', 'thunder', 'nature', 'dark', 225, '#fffbd0', 'lightning over a city'],
+    // Space
+    ['Orbit', 'orbit', 'space', 'dark', 235, '#e0a35c', 'a ringed planet'],
+    ['Nebula', 'nebula', 'space', 'dark', 275, '#ff7ac0', 'colored gas clouds'],
+    ['Galaxy', 'galaxy', 'space', 'dark', 255, '#ffd28a', 'two spirals'],
+    ['Black Hole', 'blackHole', 'space', 'dark', 20, '#ffd9a0', 'a bent ring of light'],
+    ['Rocket Launch', 'rocket', 'space', 'dark', 230, '#ffa04a', 'liftoff from the pad'],
+    ['Meteor Shower', 'meteors', 'space', 'dark', 228, '#fff1c9', 'streaks over a campsite'],
+    ['Warp', 'warp', 'space', 'dark', 215, '#7ad8ff', 'stars at light speed'],
+    // Energy
+    ['Iron', 'iron', 'energy', 'dark', 15, '#ff7a3d', 'one more rep'],
+    ['Code Rain', 'codeRain', 'energy', 'dark', 140, '#3dff8a', 'green phosphor'],
+    ['Outrun', 'outrun', 'energy', 'dark', 285, '#ff4fd8', 'neon horizon'],
+    ['Equalizer', 'equalizer', 'energy', 'dark', 250, '#5affa0', 'a VU meter dancing'],
+    ['Neon City', 'neonCity', 'energy', 'dark', 300, '#7affff', 'signs and flying cars'],
+    ['Fireworks', 'fireworks', 'energy', 'dark', 235, '#ffd23d', 'bursts over a skyline'],
+    ['Disco', 'disco', 'energy', 'dark', 280, '#ffd23d', 'mirror ball and a floor'],
+    ['LED Plasma', 'plasma', 'energy', 'dark', 265, '#ff7ac8', 'a matrix of color'],
+    ['Invaders', 'invaders', 'energy', 'dark', 160, '#5affb0', 'the fleet marches'],
+    ['Pong', 'pong', 'energy', 'dark', 240, '#8aa0ff', 'ball, paddles, a rally'],
+    ['Snake', 'snake', 'energy', 'dark', 140, '#5aff8a', 'a long snake and apples'],
+    ['Tetris Rain', 'tetris', 'energy', 'dark', 245, '#ffd23d', 'pieces falling in two wells'],
+    ['Volcano', 'volcano', 'energy', 'dark', 10, '#ff9a3a', 'lava bombs and embers'],
+  ] as [string, Key, Mode, Tone, number, string, string][]
+).map(([name, key, mode, tone, hue, accent, blurb]) => ({ name, key, mode, tone, hue, accent, blurb }))
 
 const looks = new Map<string, ThemeSetArgs>()
 const scenes = new Map<string, string>()
 
+// A whole window palette from one hue and one accent.
 function colorsFor(w: Wall): ThemeSetArgs['colors'] {
+  const dark = w.tone === 'dark'
+  const h = w.hue
+  const s = dark ? [hsl(h, 32, 6), hsl(h, 30, 8.5), hsl(h, 28, 11.5), hsl(h, 26, 14)] : [hsl(h, 30, 87), hsl(h, 30, 91), hsl(h, 32, 95), hsl(h, 32, 95)]
+  const t = dark ? [hsl(h, 25, 94), hsl(h, 18, 78), hsl(h, 12, 62)] : [hsl(h, 40, 9), hsl(h, 25, 24), hsl(h, 18, 34)]
+  const roles = dark
+    ? { accent: w.accent, danger: '#e0594d', success: '#4fd2a0', warning: '#f0b04a', pro: '#a08cf0' }
+    : { accent: w.accent, danger: '#c9403a', success: '#2f8a52', warning: '#a86f14', pro: '#6d4f94' }
+
   return makeColors({
     label: w.name,
     only: w.tone,
-    roles: w.roles,
-    [w.tone]: {
-      gray: {
-        anchors: {
-          'surface-0': w.s[0],
-          'surface-1': w.s[1],
-          'surface-2': w.s[2],
-          'surface-3': w.s[3],
-          'text-primary': w.t[0],
-          'text-secondary': w.t[1],
-          'text-muted': w.t[2],
-        },
-      },
-    },
-    codeTheme: w.tone === 'dark' ? { dark: 'nord' } : undefined,
+    roles,
+    [w.tone]: { gray: { anchors: { 'surface-0': s[0], 'surface-1': s[1], 'surface-2': s[2], 'surface-3': s[3], 'text-primary': t[0], 'text-secondary': t[1], 'text-muted': t[2] } } },
+    codeTheme: dark ? { dark: 'nord' } : undefined,
   }).theme
 }
 
@@ -83,7 +116,7 @@ function lookOf(w: Wall): ThemeSetArgs {
   if (!look) {
     look = {
       colors: colorsFor(w),
-      backdrop: { scene: `cw-${w.key}-${BUILD}`, glass: { blur: 18, tint: w.glass, opacity: 0.5 } },
+      backdrop: { scene: `cw-${w.key}-${BUILD}`, glass: { blur: 18, tint: w.tone === 'dark' ? hsl(w.hue, 32, 5) : hsl(w.hue, 30, 93), opacity: 0.5 } },
       overrideColorScheme: w.tone,
     }
     looks.set(w.key, look)
@@ -101,6 +134,7 @@ function handleOf(value: unknown): string {
 
 const current = atom({ plugin: 'ascii-wallpaper-collection', key: 'current' } as const, null)
 const picking = atom({ plugin: 'ascii-wallpaper-collection', key: 'picking' } as const, false)
+const category = atom({ plugin: 'ascii-wallpaper-collection', key: 'category' } as const, 'focus')
 
 const NEEDS = 'These wallpapers need Claude Code 2.1.325 or later: run `claude update` (or update Claude Desktop), then start a new session.'
 
@@ -118,10 +152,11 @@ async function apply($: EngineInterface, key: string | null): Promise<string> {
 
     const set = await $.theme.set(lookOf(w))
     await update($, current, () => w.key)
+    await update($, category, () => w.mode)
     await $.store.set('wall', w.key)
     $.ui.status(set.isDrawn ? undefined : `${w.name}: ${set.reason}`)
 
-    return set.isDrawn ? `${w.name}: ${w.blurb}.` : `${w.name} is set. Wallpapers draw in the Code tab of Claude Desktop, not in a terminal (${set.reason}).`
+    return set.isDrawn ? `${w.name} (${w.mode}): ${w.blurb}.` : `${w.name} is set. Wallpapers draw in the Code tab of Claude Desktop, not in a terminal (${set.reason}).`
   } catch (err) {
     if (err instanceof TypeError) {
       return NEEDS
@@ -131,14 +166,18 @@ async function apply($: EngineInterface, key: string | null): Promise<string> {
   }
 }
 
+const squash = (s: string) => s.toLowerCase().replace(/[\s-]/g, '')
+const modeOf = (arg: string) => MODES.find(m => m.key === arg || m.name.toLowerCase() === arg || m.aliases.includes(arg))
+const inMode = (m: Mode) => WALLS.filter(w => w.mode === m)
+
 export const register: Register = (on, options) => {
   const handle = handleOf(options.name)
 
   on('session.start', async ($, e, next) => {
     await $.command.register({
       name: 'wallpaper',
-      description: 'Live ASCII wallpapers behind the chat: pick one, or turn it off',
-      argumentHint: `${WALLS.map(w => w.key).join(' | ')} | next | random | off`,
+      description: 'Live ASCII wallpapers behind the chat: pick one, a mode, or turn it off',
+      argumentHint: 'a scene | work | chill | nature | space | enjoy | next | random | list | off',
     })
 
     const saved = await $.store.get('wall')
@@ -166,19 +205,33 @@ export const register: Register = (on, options) => {
       return { text: await apply($, null) }
     }
 
+    if (arg === 'list') {
+      return { text: MODES.map(m => `${m.name} (${m.blurb}): ${inMode(m.key).map(w => w.key).join(', ')}`).join('\n') }
+    }
+
     if (arg === 'next' || arg === 'random') {
-      const cur = await read($, current)
-      const at = WALLS.findIndex(w => w.key === cur)
-      const to = arg === 'next' ? WALLS[(at + 1) % WALLS.length] : WALLS[Math.floor(Math.random() * WALLS.length)]
+      const curKey = await read($, current)
+      const cur = WALLS.find(w => w.key === curKey)
+      const pool = arg === 'next' && cur ? inMode(cur.mode) : WALLS
+      const at = pool.findIndex(w => w.key === cur?.key)
+      const to = arg === 'next' ? pool[(at + 1) % pool.length] : pool[Math.floor(Math.random() * pool.length)]
 
       return { text: await apply($, to.key) }
     }
 
-    const squash = (s: string) => s.toLowerCase().replace(/[\s-]/g, '')
+    // "random focus", "focus", "work", "enjoy": a surprise from that mode
+    const m = modeOf(arg.replace(/^random /, ''))
+
+    if (m) {
+      const pool = inMode(m.key)
+
+      return { text: await apply($, pool[Math.floor(Math.random() * pool.length)].key) }
+    }
+
     const w = WALLS.find(x => x.key.toLowerCase() === arg || squash(x.name) === squash(arg))
 
     if (!w) {
-      return { text: `No wallpaper "${arg}". One of: ${WALLS.map(x => x.name).join(', ')}, or next, random, off.` }
+      return { text: `No wallpaper or mode "${arg}". Try /wallpaper list.` }
     }
 
     return { text: await apply($, w.key) }
@@ -204,7 +257,7 @@ export const register: Register = (on, options) => {
 
     const { Svg } = $.ui.resolve(e)
 
-    return <Svg source={source} alt={w.alt} isInteractive />
+    return <Svg source={source} alt={`${w.name}: ${w.blurb}`} isInteractive />
   })
 
   on('ui.render', { component: 'AbovePrompt' }, async ($, e, next) => {
@@ -217,6 +270,8 @@ export const register: Register = (on, options) => {
     }
 
     const cur = await read($, current)
+    const active = await read($, category)
+    const mode = MODES.find(m => m.key === active) ?? MODES[0]
     const { Box, Text, Button } = $.ui.resolve(e)
 
     return (
@@ -224,7 +279,7 @@ export const register: Register = (on, options) => {
         <Box flexDirection="row" justifyContent="space-between">
           <Box flexDirection="row" gap="sm">
             <Text bold>/wallpaper</Text>
-            <Text dimColor>live ASCII scenes</Text>
+            <Text dimColor>{WALLS.length} live ASCII scenes</Text>
           </Box>
           <Box flexDirection="row" gap="sm">
             <Button key="off" label="Off" hotkey="0" dimColor onPress={() => apply($, null)} />
@@ -232,7 +287,13 @@ export const register: Register = (on, options) => {
           </Box>
         </Box>
         <Box flexDirection="row" gap="sm" flexWrap="wrap">
-          {WALLS.map((w, i) => (
+          {MODES.map(m => (
+            <Button key={m.key} label={`${m.name} · ${inMode(m.key).length}`} hotkey={m.hotkey} variant={m.key === mode.key ? 'primary' : 'secondary'} onPress={() => update($, category, () => m.key)} />
+          ))}
+        </Box>
+        <Text dimColor>{mode.blurb}</Text>
+        <Box flexDirection="row" gap="sm" flexWrap="wrap">
+          {inMode(mode.key).map((w, i) => (
             <Box key={w.key} flexDirection="column">
               <Button key={w.key} label={`${w.name}${w.key === cur ? ' ✓' : ''}`} hotkey={i < 9 ? String(i + 1) : undefined} variant={w.key === cur ? 'primary' : 'secondary'} onPress={() => apply($, w.key)} />
               <Text dimColor>{w.blurb}</Text>
