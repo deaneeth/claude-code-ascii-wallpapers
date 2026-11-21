@@ -7,7 +7,7 @@ A scene is one function that takes the user's handle and returns an SVG string. 
 | File | What is in it |
 | --- | --- |
 | `hooks/engine.js` | The drawing helpers every scene shares. |
-| `hooks/scenes-focus.js`, `scenes-chill.js`, `scenes-nature.js`, `scenes-space.js`, `scenes-energy.js`, `scenes-dev.js` | One file per mode, one function per scene. |
+| `hooks/scenes-focus.js`, `scenes-chill.js`, `scenes-nature.js`, `scenes-space.js`, `scenes-energy.js`, `scenes-dev.js`, `scenes-light.js`, `scenes-creatures.js`, `scenes-art.js` | One file per mode, one function per scene. |
 | `hooks/legacy.js` | The first eleven scenes. |
 | `hooks/art.js` | Gathers every scene into `SCENES`. |
 | `hooks/register.tsx` | The plugin: the `WALLS` table (name, mode, tone, hue, accent), palettes, `/wallpaper`, and the picker. |
@@ -35,8 +35,8 @@ A scene is one function that takes the user's handle and returns an SVG string. 
 3. Add a row to `WALLS` in `hooks/register.tsx`: name, key, mode, tone (`dark` or `light`), hue, accent, and a short blurb.
 4. Bump `BUILD` in `hooks/register.tsx` so the app draws the new picture and not a cached one.
 5. Keep each scene under 131,072 characters, and keep important art away from the middle (where the words sit) and the foot (where the message box sits).
-6. Run `node scripts/build-previews.mjs`, which writes `assets/previews/*.svg` and flags any scene over the limit. Open the SVG in a browser to check it moves, and give animated things a negative start delay so the first frame already shows them.
-7. Run `claude plugin validate .` and make sure every theme passes with no line starting `Desktop won't paint`.
+6. Run `node scripts/build-previews.mjs` (and `scripts/build-thumbs.sh` for the picker thumbnails and `scripts/build-readme.mjs` for the gallery), which writes `assets/previews/*.svg` and flags any scene over the limit. Open the SVG in a browser to check it moves, and give animated things a negative start delay so the first frame already shows them.
+7. Run `node scripts/audit.mjs` to check size and weight, then `claude plugin validate .` and make sure every theme passes with no line starting `Desktop won't paint`.
 
 ## House rules
 

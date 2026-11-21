@@ -1,5 +1,15 @@
 # Changelog
 
+## 2.2.0
+
+- **93 scenes in nine modes.** 32 new scenes and three new modes: **Creatures** (Lily Pond, Moon Jellies, Whale Song, Butterfly House, Window Cat, Murmuration, Firefly Field, Night Owl, Sea Turtle, Fox in Snow), **Art** (Halftone, Dither Waves, Riso Hills, Flow Field, Sine Stack, Radar) and **Minimal** (Horizon, Dot Grid, Static, Slow Lines).
+- **Ten more light scenes** (17 in all): Greenhouse, Sketchbook, Snow Day, Pastel City, Kite Day, Spring Meadow, Low Tide, Lavender Rows, Summer Wheat and Riso Hills. Four more seasons in Nature: Spring Rain, Summer Wheat, Harvest Moon, Ice Lake.
+- **A new picker** with a live thumbnail of every scene, six to a page, mode tabs with counts, paging, a light-only filter and a surprise button, all on hotkeys.
+- **Reactive scenes** (opt in with `/wallpaper reactive on`): fireworks on a merge, a rocket on a push, Green CI when tests pass, Kernel Panic when they fail.
+- **Make your own**: a `make-wallpaper` skill that builds a new scene as its own mod from a description.
+- **Settings**: `/wallpaper accent`, `glass`, `color <hue>`, `auto daynight`, `auto shuffle`, `project`, `status`, plus `light` and `dark`.
+- `scripts/build-thumbs.sh`, `scripts/build-readme.mjs` and `scripts/perf.mjs` keep thumbnails, the README gallery and a performance check in step with the scenes.
+
 ## 2.1.0
 
 - New **Dev** mode for hardcore coders: 10 dark, moody, minimal scenes (Vim Night, Hex Dump, Assembly, Sorting, Big O, Diff, Green CI, The Void, Compiler, Kernel Panic). The collection is now **61 scenes in six modes**.

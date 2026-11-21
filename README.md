@@ -2,12 +2,12 @@
 
 # Claude Code ASCII Wallpapers
 
-**61 live, animated ASCII wallpapers and themes for Claude Desktop, in six modes, with frosted-glass panels, a one-key picker, and your own handle signed into every scene.**
+**93 live, animated ASCII wallpapers and themes for Claude Desktop, in nine modes, with frosted-glass panels, a thumbnail picker, scenes that react to your commands, and your own handle signed into every scene.**
 
 [![License: MIT](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 [![Claude Code](https://img.shields.io/badge/Claude%20Code-%E2%89%A5%202.1.325-d97757)](https://docs.claude.com/en/docs/claude-code)
-[![Scenes](https://img.shields.io/badge/scenes-61-5dffb0)](#the-collection)
-[![Modes](https://img.shields.io/badge/modes-focus%20%C2%B7%20chill%20%C2%B7%20nature%20%C2%B7%20space%20%C2%B7%20energy%20%C2%B7%20dev-8b7cf6)](#the-collection)
+[![Scenes](https://img.shields.io/badge/scenes-93-5dffb0)](#the-collection)
+[![Modes](https://img.shields.io/badge/modes-focus%20%C2%B7%20chill%20%C2%B7%20nature%20%C2%B7%20space%20%C2%B7%20energy%20%C2%B7%20dev%20%C2%B7%20creatures%20%C2%B7%20art%20%C2%B7%20minimal-8b7cf6)](#the-collection)
 
 <img src="assets/social-preview.png" alt="A grid of live ASCII wallpapers: silicon, a vim editor, nebula, campfire, neon city, a compiler syntax tree, waterfall and a green CI matrix" width="860">
 
@@ -19,18 +19,22 @@ It installs as a **Claude Code plugin**, so there is nothing to build: one comma
 
 ## The collection
 
-**61 scenes in six modes.** Pick a mode for the mood you are in, then a scene. Click any preview to open the animated SVG (7 light-mode scenes are marked ☀).
+<!-- gallery:start -->
+**93 scenes in 9 modes.** Pick a mode for the mood you are in, then a scene. Click any preview to open the animated SVG (17 light-mode scenes are marked ☀).
 
 | Mode | Scenes | For |
 | --- | --- | --- |
-| **Focus** | 12 | Work mode: calm, readable, low-distraction. |
-| **Chill** | 10 | Cozy and slow. |
-| **Nature** | 9 | Mountains, water, weather. |
-| **Space** | 7 | Planets, nebulae, rockets. |
-| **Energy** | 13 | Enjoy mode: arcade, neon, fire. |
-| **Dev** | 10 | Hardcore coder mode: dark, moody, minimal. |
+| **Focus** | 14 | Work mode: calm, readable, low-distraction. |
+| **Chill** | 13 | Cozy and slow. |
+| **Nature** | 16 | Weather, water and mountains. |
+| **Space** | 7 | The dark between things. |
+| **Energy** | 13 | Enjoy mode: loud, bright, moving. |
+| **Dev** | 10 | Hardcore coder: dark, moody, minimal. |
+| **Creatures** | 10 | Things that live in the picture. |
+| **Art** | 6 | Graphic styles: halftone, dither, riso. |
+| **Minimal** | 4 | Almost nothing behind the chat. |
 
-### Focus · 12
+### Focus · 14
 
 Work mode. Calm, readable and low-distraction, for long stretches of deep work.
 
@@ -53,9 +57,13 @@ Work mode. Calm, readable and low-distraction, for long stretches of deep work.
 <td align="center"><a href="assets/previews/zen.svg"><img src="assets/thumbs/zen.jpg" width="230" alt="Zen Garden: raked sand, falling petals"></a><br><b>Zen Garden</b> ☀<br><sub>raked sand, falling petals</sub></td>
 <td align="center"><a href="assets/previews/tide.svg"><img src="assets/thumbs/tide.jpg" width="230" alt="Tide: a slow sea at dawn"></a><br><b>Tide</b> ☀<br><sub>a slow sea at dawn</sub></td>
 </tr>
+<tr>
+<td align="center"><a href="assets/previews/greenhouse.svg"><img src="assets/thumbs/greenhouse.jpg" width="230" alt="Greenhouse: plants in sunbeams"></a><br><b>Greenhouse</b> ☀<br><sub>plants in sunbeams</sub></td>
+<td align="center"><a href="assets/previews/sketch.svg"><img src="assets/thumbs/sketch.jpg" width="230" alt="Sketchbook: a drawing being made"></a><br><b>Sketchbook</b> ☀<br><sub>a drawing being made</sub></td>
+</tr>
 </table>
 
-### Chill · 10
+### Chill · 13
 
 Cozy and slow. Warm light, weather and quiet motion.
 
@@ -75,14 +83,17 @@ Cozy and slow. Warm light, weather and quiet motion.
 <tr>
 <td align="center"><a href="assets/previews/cherry.svg"><img src="assets/thumbs/cherry.jpg" width="230" alt="Cherry Blossom: petals on the wind"></a><br><b>Cherry Blossom</b> ☀<br><sub>petals on the wind</sub></td>
 <td align="center"><a href="assets/previews/autumn.svg"><img src="assets/thumbs/autumn.jpg" width="230" alt="Autumn: bare trees, falling leaves"></a><br><b>Autumn</b><br><sub>bare trees, falling leaves</sub></td>
-<td></td>
-<td></td>
+<td align="center"><a href="assets/previews/snowDay.svg"><img src="assets/thumbs/snowDay.jpg" width="230" alt="Snow Day: a snowman and a sled"></a><br><b>Snow Day</b> ☀<br><sub>a snowman and a sled</sub></td>
+<td align="center"><a href="assets/previews/pastelCity.svg"><img src="assets/thumbs/pastelCity.jpg" width="230" alt="Pastel City: balloons over soft towers"></a><br><b>Pastel City</b> ☀<br><sub>balloons over soft towers</sub></td>
+</tr>
+<tr>
+<td align="center"><a href="assets/previews/kite.svg"><img src="assets/thumbs/kite.jpg" width="230" alt="Kite Day: four kites on strings"></a><br><b>Kite Day</b> ☀<br><sub>four kites on strings</sub></td>
 </tr>
 </table>
 
-### Nature · 9
+### Nature · 16
 
-Mountains, water and weather.
+Mountains, water, weather and the seasons.
 
 <table>
 <tr>
@@ -99,15 +110,21 @@ Mountains, water and weather.
 </tr>
 <tr>
 <td align="center"><a href="assets/previews/thunder.svg"><img src="assets/thumbs/thunder.jpg" width="230" alt="Thunderstorm: lightning over a city"></a><br><b>Thunderstorm</b><br><sub>lightning over a city</sub></td>
-<td></td>
-<td></td>
-<td></td>
+<td align="center"><a href="assets/previews/meadow.svg"><img src="assets/thumbs/meadow.jpg" width="230" alt="Spring Meadow: flowers, butterflies, clouds"></a><br><b>Spring Meadow</b> ☀<br><sub>flowers, butterflies, clouds</sub></td>
+<td align="center"><a href="assets/previews/beach.svg"><img src="assets/thumbs/beach.jpg" width="230" alt="Low Tide: foam, gulls and a palm"></a><br><b>Low Tide</b> ☀<br><sub>foam, gulls and a palm</sub></td>
+<td align="center"><a href="assets/previews/lavender.svg"><img src="assets/thumbs/lavender.jpg" width="230" alt="Lavender Rows: rows to the horizon, bees"></a><br><b>Lavender Rows</b> ☀<br><sub>rows to the horizon, bees</sub></td>
+</tr>
+<tr>
+<td align="center"><a href="assets/previews/wheat.svg"><img src="assets/thumbs/wheat.jpg" width="230" alt="Summer Wheat: wind crossing a field"></a><br><b>Summer Wheat</b> ☀<br><sub>wind crossing a field</sub></td>
+<td align="center"><a href="assets/previews/springRain.svg"><img src="assets/thumbs/springRain.jpg" width="230" alt="Spring Rain: tulips in the rain"></a><br><b>Spring Rain</b><br><sub>tulips in the rain</sub></td>
+<td align="center"><a href="assets/previews/harvestMoon.svg"><img src="assets/thumbs/harvestMoon.jpg" width="230" alt="Harvest Moon: pumpkins under a huge moon"></a><br><b>Harvest Moon</b><br><sub>pumpkins under a huge moon</sub></td>
+<td align="center"><a href="assets/previews/iceLake.svg"><img src="assets/thumbs/iceLake.jpg" width="230" alt="Ice Lake: skaters on a frozen lake"></a><br><b>Ice Lake</b><br><sub>skaters on a frozen lake</sub></td>
 </tr>
 </table>
 
 ### Space · 7
 
-The dark between things, and the bright things in it.
+Planets, nebulae, rockets and the dark between them.
 
 <table>
 <tr>
@@ -120,7 +137,6 @@ The dark between things, and the bright things in it.
 <td align="center"><a href="assets/previews/rocket.svg"><img src="assets/thumbs/rocket.jpg" width="230" alt="Rocket Launch: liftoff from the pad"></a><br><b>Rocket Launch</b><br><sub>liftoff from the pad</sub></td>
 <td align="center"><a href="assets/previews/meteors.svg"><img src="assets/thumbs/meteors.jpg" width="230" alt="Meteor Shower: streaks over a campsite"></a><br><b>Meteor Shower</b><br><sub>streaks over a campsite</sub></td>
 <td align="center"><a href="assets/previews/warp.svg"><img src="assets/thumbs/warp.jpg" width="230" alt="Warp: stars at light speed"></a><br><b>Warp</b><br><sub>stars at light speed</sub></td>
-<td></td>
 </tr>
 </table>
 
@@ -149,15 +165,12 @@ Enjoy mode. Loud, bright and moving: arcade, neon and fire.
 </tr>
 <tr>
 <td align="center"><a href="assets/previews/volcano.svg"><img src="assets/thumbs/volcano.jpg" width="230" alt="Volcano: lava bombs and embers"></a><br><b>Volcano</b><br><sub>lava bombs and embers</sub></td>
-<td></td>
-<td></td>
-<td></td>
 </tr>
 </table>
 
 ### Dev · 10
 
-Hardcore coder mode. Dark, moody and minimal: editors, memory, assembly, diffs, green test runs and the quiet between commands. One accent per scene, nothing that shouts.
+Hardcore coder mode. Dark, moody and minimal: editors, memory, assembly, diffs, green test runs and the quiet between commands.
 
 <table>
 <tr>
@@ -177,6 +190,60 @@ Hardcore coder mode. Dark, moody and minimal: editors, memory, assembly, diffs, 
 <td align="center"><a href="assets/previews/panic.svg"><img src="assets/thumbs/panic.jpg" width="230" alt="Kernel Panic: a stack trace in red"></a><br><b>Kernel Panic</b><br><sub>a stack trace in red</sub></td>
 </tr>
 </table>
+
+### Creatures · 10
+
+Things that live in the picture: koi, jellyfish, a whale, an owl, a cat on a sill.
+
+<table>
+<tr>
+<td align="center"><a href="assets/previews/koi.svg"><img src="assets/thumbs/koi.jpg" width="230" alt="Lily Pond: koi, lily pads, ripples"></a><br><b>Lily Pond</b><br><sub>koi, lily pads, ripples</sub></td>
+<td align="center"><a href="assets/previews/jellies.svg"><img src="assets/thumbs/jellies.jpg" width="230" alt="Moon Jellies: drifting, pulsing jellyfish"></a><br><b>Moon Jellies</b><br><sub>drifting, pulsing jellyfish</sub></td>
+<td align="center"><a href="assets/previews/whale.svg"><img src="assets/thumbs/whale.jpg" width="230" alt="Whale Song: a whale under the moon"></a><br><b>Whale Song</b><br><sub>a whale under the moon</sub></td>
+<td align="center"><a href="assets/previews/butterflies.svg"><img src="assets/thumbs/butterflies.jpg" width="230" alt="Butterfly House: butterflies over flowers"></a><br><b>Butterfly House</b><br><sub>butterflies over flowers</sub></td>
+</tr>
+<tr>
+<td align="center"><a href="assets/previews/cat.svg"><img src="assets/thumbs/cat.jpg" width="230" alt="Window Cat: rain, a skyline, a cat"></a><br><b>Window Cat</b><br><sub>rain, a skyline, a cat</sub></td>
+<td align="center"><a href="assets/previews/birds.svg"><img src="assets/thumbs/birds.jpg" width="230" alt="Murmuration: starlings at dusk"></a><br><b>Murmuration</b><br><sub>starlings at dusk</sub></td>
+<td align="center"><a href="assets/previews/fireflies.svg"><img src="assets/thumbs/fireflies.jpg" width="230" alt="Firefly Field: blinking over tall grass"></a><br><b>Firefly Field</b><br><sub>blinking over tall grass</sub></td>
+<td align="center"><a href="assets/previews/owl.svg"><img src="assets/thumbs/owl.jpg" width="230" alt="Night Owl: a blinking owl on a branch"></a><br><b>Night Owl</b><br><sub>a blinking owl on a branch</sub></td>
+</tr>
+<tr>
+<td align="center"><a href="assets/previews/turtle.svg"><img src="assets/thumbs/turtle.jpg" width="230" alt="Sea Turtle: a turtle over the reef"></a><br><b>Sea Turtle</b><br><sub>a turtle over the reef</sub></td>
+<td align="center"><a href="assets/previews/fox.svg"><img src="assets/thumbs/fox.jpg" width="230" alt="Fox in Snow: a fox trots through snow"></a><br><b>Fox in Snow</b><br><sub>a fox trots through snow</sub></td>
+</tr>
+</table>
+
+### Art · 6
+
+Graphic styles: halftone, dither, riso, flow fields, sine waves and a radar sweep.
+
+<table>
+<tr>
+<td align="center"><a href="assets/previews/halftone.svg"><img src="assets/thumbs/halftone.jpg" width="230" alt="Halftone: a sun made of dots"></a><br><b>Halftone</b><br><sub>a sun made of dots</sub></td>
+<td align="center"><a href="assets/previews/dither.svg"><img src="assets/thumbs/dither.jpg" width="230" alt="Dither Waves: a gradient turned to noise"></a><br><b>Dither Waves</b><br><sub>a gradient turned to noise</sub></td>
+<td align="center"><a href="assets/previews/riso.svg"><img src="assets/thumbs/riso.jpg" width="230" alt="Riso Hills: two inks, slightly off register"></a><br><b>Riso Hills</b> ☀<br><sub>two inks, slightly off register</sub></td>
+<td align="center"><a href="assets/previews/flow.svg"><img src="assets/thumbs/flow.jpg" width="230" alt="Flow Field: sparks riding streamlines"></a><br><b>Flow Field</b><br><sub>sparks riding streamlines</sub></td>
+</tr>
+<tr>
+<td align="center"><a href="assets/previews/sineStack.svg"><img src="assets/thumbs/sineStack.jpg" width="230" alt="Sine Stack: seven waves sliding past"></a><br><b>Sine Stack</b><br><sub>seven waves sliding past</sub></td>
+<td align="center"><a href="assets/previews/radar.svg"><img src="assets/thumbs/radar.jpg" width="230" alt="Radar: a sweep and flaring blips"></a><br><b>Radar</b><br><sub>a sweep and flaring blips</sub></td>
+</tr>
+</table>
+
+### Minimal · 4
+
+Almost nothing behind the chat, for people who want the room and a little life.
+
+<table>
+<tr>
+<td align="center"><a href="assets/previews/horizon.svg"><img src="assets/thumbs/horizon.jpg" width="230" alt="Horizon: one line and a small sun"></a><br><b>Horizon</b><br><sub>one line and a small sun</sub></td>
+<td align="center"><a href="assets/previews/dotgrid.svg"><img src="assets/thumbs/dotgrid.jpg" width="230" alt="Dot Grid: dots breathing outward"></a><br><b>Dot Grid</b><br><sub>dots breathing outward</sub></td>
+<td align="center"><a href="assets/previews/grain.svg"><img src="assets/thumbs/grain.jpg" width="230" alt="Static: quiet film grain"></a><br><b>Static</b><br><sub>quiet film grain</sub></td>
+<td align="center"><a href="assets/previews/lines.svg"><img src="assets/thumbs/lines.jpg" width="230" alt="Slow Lines: five lines, drifting"></a><br><b>Slow Lines</b><br><sub>five lines, drifting</sub></td>
+</tr>
+</table>
+<!-- gallery:end -->
 
 ## Install
 
@@ -202,18 +269,50 @@ Then start a new session in the Code tab.
 
 ## Use
 
+Type `/wallpaper` for the picker above the prompt: a strip of live-scene thumbnails, a row of modes, six scenes a page. Click, or press the keys shown on the buttons.
+
 | Do this | To get |
 | --- | --- |
-| `/wallpaper` | The picker above the prompt: pick a mode, then a scene. Click, or press `1` to `9` for a scene, `f` `c` `n` `s` `e` for a mode, `0` for off. |
-| `/wallpaper aurora` | A scene by name (try `/wallpaper list` for every key). |
-| `/wallpaper work` | A random **Focus** scene. Also `chill`, `nature`, `space`, `dev` (hardcore coder), and `enjoy` (Energy). |
-| `/wallpaper next` | The next scene in the current mode. |
-| `/wallpaper random` | A surprise from all 61. |
+| `/wallpaper` | The picker. `1` to `6` pick a scene, `f` `c` `n` `s` `e` `d` `a` `r` `m` pick a mode, `p` / `b` page, `l` light scenes only, `x` surprise me, `0` off. |
+| `/wallpaper aurora` | A scene by name (`/wallpaper list` shows every key). |
+| `/wallpaper work` | A random **Focus** scene. Also `chill`, `nature`, `space`, `enjoy` (Energy), `dev`, `creatures`, `art`, `minimal`. |
+| `/wallpaper light` / `dark` | A random light or dark scene from all of them. |
+| `/wallpaper next` / `random` | The next scene in this mode / a surprise from everything. |
 | `/wallpaper off` | No wallpaper, the app's own look. |
 
 Your pick is remembered for the next session. The first run starts on **Silicon**.
 
 ## Make it yours
+
+| Command | What it does |
+| --- | --- |
+| `/wallpaper accent #ff8f5e` | Your own accent color for buttons and highlights (`accent reset` to undo). |
+| `/wallpaper glass blur 28` · `glass opacity 0.7` | How frosted the panels are (`glass reset`). |
+| `/wallpaper color 220` · `color 340 light` | A colors-only theme with no picture: hue 0 to 359, dark or light. |
+| `/wallpaper auto daynight` | Light scenes by day, dark by night, inside the mode you are in. |
+| `/wallpaper auto shuffle 20` | A fresh scene from your mode every 20 minutes (on your next prompt). |
+| `/wallpaper project` | Pin the current scene to this folder (`project off` to undo). |
+| `/wallpaper reactive on` | Scenes react to what you do, see below. |
+| `/wallpaper status` | What is on, and your settings. |
+
+### Reactive scenes (opt in)
+
+With `/wallpaper reactive on`, a command that finishes can change the scene for about 14 seconds, then your scene comes back:
+
+| You | You get |
+| --- | --- |
+| `gh pr merge` or `git merge` succeeds | **Fireworks** |
+| `git push` succeeds | **Rocket Launch** |
+| a test run passes (`npm test`, `pytest`, `cargo test`, `go test`, ...) | **Green CI** |
+| a test run fails | **Kernel Panic** |
+
+It only looks at the command line and the last few lines of its output, and keeps nothing. There is a 25 second cooldown so it never flickers.
+
+### Make your own scene
+
+The plugin ships a skill. Ask Claude: **"make me a wallpaper of a lighthouse in a storm"** and it builds a new scene as its own small mod, with the same engine the built-in scenes use, never touching your installed set. See [`skills/make-wallpaper`](skills/make-wallpaper/SKILL.md).
+
+### Your handle
 
 The scenes sign **your handle** in a corner (`~/yourhandle` with a blinking cursor), in the Blueprint title block, in the Night Shift and Terminal prompts, and on the Graph Paper sheet. Set it when you install, or change it later in Claude Code's `/config` menu under this plugin's **Your handle** row. Letters, digits, `.`, `_` and `-` only, up to 16.
 
@@ -241,13 +340,13 @@ Prefer settings files? Add this to `~/.claude/settings.json`:
 
 **Nothing changes after I install it.** Start a new session after installing, and make sure Claude Code is 2.1.325 or later. If you run another plugin that sets a theme, turn it off: only one theme can be active at a time.
 
-**Which scenes are light?** Blueprint, Graph Paper, Zen Garden, Tide, Cherry Blossom, Misty Peaks, Dunes. The rest are dark.
+**Which scenes are light?** Open the picker and press `l`, or run `/wallpaper light`. They are marked ☀ in the gallery above.
 
-**Can I use my own colors with a scene?** Scene colors come from the `WALLS` table in [`hooks/register.tsx`](hooks/register.tsx): a hue and an accent per scene. Edit a row, bump `BUILD`, and reload.
+**Can I use my own colors with a scene?** Yes: `/wallpaper accent #hex` recolors buttons and highlights, `/wallpaper glass ...` changes the frost, and `/wallpaper color <hue>` gives a colors-only theme.
 
 **How do I remove it?** `claude plugin uninstall ascii-wallpaper-collection`.
 
-**Does it slow Claude down?** The scenes are small static documents animated by the renderer, not scripts. The heaviest are around 110 KB of SVG. If your machine struggles, pick a quieter scene (Blueprint, Zen Garden, Constellations, Misty Peaks) or `/wallpaper off`.
+**Does it slow Claude down?** The scenes are small static documents animated by the renderer, not scripts. The heaviest are around 110 KB of SVG. If your machine struggles, pick a quieter scene (the Minimal mode is built for that) or `/wallpaper off`. `scripts/perf.mjs` measures every scene.
 
 ## Contributing
 

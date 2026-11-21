@@ -1,7 +1,7 @@
 {
   "name": "ascii-wallpaper-collection",
-  "version": "2.1.0",
-  "description": "61 live ASCII-tile wallpapers for Claude Code in Claude Desktop, in six modes (Focus, Chill, Nature, Space, Energy, Dev): frosted panels, matching themes, a /wallpaper picker and your handle signed in.",
+  "version": "2.2.0",
+  "description": "93 live ASCII-tile wallpapers for Claude Code in Claude Desktop, in nine modes (Focus, Chill, Nature, Space, Energy, Dev, Creatures, Art, Minimal): thumbnail picker, scenes that react to your commands, matching themes, light and dark, your handle signed in.",
   "author": {
     "name": "deaneeth",
     "url": "https://github.com/deaneeth"
@@ -23,7 +23,9 @@
     "lofi",
     "retro",
     "developer",
-    "terminal"
+    "terminal",
+    "pixel-art",
+    "creatures"
   ],
   "types": "./types/index.d.ts",
   "userConfig": {

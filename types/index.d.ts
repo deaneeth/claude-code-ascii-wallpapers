@@ -1,5 +1,5 @@
 declare module 'claude-code' {
   interface PluginState {
-    'ascii-wallpaper-collection': { current: string | null; picking: boolean; category: string }
+    'ascii-wallpaper-collection': { current: string | null; picking: boolean; category: string; page: number; light: boolean; tick: number }
   }
 }
