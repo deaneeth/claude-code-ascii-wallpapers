@@ -2,14 +2,14 @@
 
 # Claude Code ASCII Wallpapers
 
-**51 live, animated ASCII wallpapers and themes for Claude Desktop, in five modes, with frosted-glass panels, a one-key picker, and your own handle signed into every scene.**
+**61 live, animated ASCII wallpapers and themes for Claude Desktop, in six modes, with frosted-glass panels, a one-key picker, and your own handle signed into every scene.**
 
 [![License: MIT](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 [![Claude Code](https://img.shields.io/badge/Claude%20Code-%E2%89%A5%202.1.325-d97757)](https://docs.claude.com/en/docs/claude-code)
-[![Scenes](https://img.shields.io/badge/scenes-51-5dffb0)](#the-collection)
-[![Modes](https://img.shields.io/badge/modes-focus%20%C2%B7%20chill%20%C2%B7%20nature%20%C2%B7%20space%20%C2%B7%20energy-8b7cf6)](#the-collection)
+[![Scenes](https://img.shields.io/badge/scenes-61-5dffb0)](#the-collection)
+[![Modes](https://img.shields.io/badge/modes-focus%20%C2%B7%20chill%20%C2%B7%20nature%20%C2%B7%20space%20%C2%B7%20energy%20%C2%B7%20dev-8b7cf6)](#the-collection)
 
-<img src="assets/social-preview.png" alt="A grid of live ASCII wallpapers: silicon, aurora, outrun, invaders, lo-fi room, rocket launch, neon city, waterfall, volcano, campfire and black hole" width="860">
+<img src="assets/social-preview.png" alt="A grid of live ASCII wallpapers: silicon, a vim editor, nebula, campfire, neon city, a compiler syntax tree, waterfall and a green CI matrix" width="860">
 
 </div>
 
@@ -19,7 +19,7 @@ It installs as a **Claude Code plugin**, so there is nothing to build: one comma
 
 ## The collection
 
-**51 scenes in five modes.** Pick a mode for the mood you are in, then a scene. Click any preview to open the animated SVG (7 light-mode scenes are marked ☀).
+**61 scenes in six modes.** Pick a mode for the mood you are in, then a scene. Click any preview to open the animated SVG (7 light-mode scenes are marked ☀).
 
 | Mode | Scenes | For |
 | --- | --- | --- |
@@ -28,6 +28,7 @@ It installs as a **Claude Code plugin**, so there is nothing to build: one comma
 | **Nature** | 9 | Mountains, water, weather. |
 | **Space** | 7 | Planets, nebulae, rockets. |
 | **Energy** | 13 | Enjoy mode: arcade, neon, fire. |
+| **Dev** | 10 | Hardcore coder mode: dark, moody, minimal. |
 
 ### Focus · 12
 
@@ -154,6 +155,29 @@ Enjoy mode. Loud, bright and moving: arcade, neon and fire.
 </tr>
 </table>
 
+### Dev · 10
+
+Hardcore coder mode. Dark, moody and minimal: editors, memory, assembly, diffs, green test runs and the quiet between commands. One accent per scene, nothing that shouts.
+
+<table>
+<tr>
+<td align="center"><a href="assets/previews/vim.svg"><img src="assets/thumbs/vim.jpg" width="230" alt="Vim Night: a modal editor at 2am"></a><br><b>Vim Night</b><br><sub>a modal editor at 2am</sub></td>
+<td align="center"><a href="assets/previews/hexdump.svg"><img src="assets/thumbs/hexdump.jpg" width="230" alt="Hex Dump: bytes and a scanning band"></a><br><b>Hex Dump</b><br><sub>bytes and a scanning band</sub></td>
+<td align="center"><a href="assets/previews/asm.svg"><img src="assets/thumbs/asm.jpg" width="230" alt="Assembly: an instruction pointer walks"></a><br><b>Assembly</b><br><sub>an instruction pointer walks</sub></td>
+<td align="center"><a href="assets/previews/sorting.svg"><img src="assets/thumbs/sorting.jpg" width="230" alt="Sorting: bars and a comparing cursor"></a><br><b>Sorting</b><br><sub>bars and a comparing cursor</sub></td>
+</tr>
+<tr>
+<td align="center"><a href="assets/previews/bigO.svg"><img src="assets/thumbs/bigO.jpg" width="230" alt="Big O: six growth curves"></a><br><b>Big O</b><br><sub>six growth curves</sub></td>
+<td align="center"><a href="assets/previews/diff.svg"><img src="assets/thumbs/diff.jpg" width="230" alt="Diff: hunks, adds and removes"></a><br><b>Diff</b><br><sub>hunks, adds and removes</sub></td>
+<td align="center"><a href="assets/previews/tests.svg"><img src="assets/thumbs/tests.jpg" width="230" alt="Green CI: a test matrix going green"></a><br><b>Green CI</b><br><sub>a test matrix going green</sub></td>
+<td align="center"><a href="assets/previews/voidCursor.svg"><img src="assets/thumbs/voidCursor.jpg" width="230" alt="The Void: a prompt and a cursor"></a><br><b>The Void</b><br><sub>a prompt and a cursor</sub></td>
+</tr>
+<tr>
+<td align="center"><a href="assets/previews/compiler.svg"><img src="assets/thumbs/compiler.jpg" width="230" alt="Compiler: a syntax tree being walked"></a><br><b>Compiler</b><br><sub>a syntax tree being walked</sub></td>
+<td align="center"><a href="assets/previews/panic.svg"><img src="assets/thumbs/panic.jpg" width="230" alt="Kernel Panic: a stack trace in red"></a><br><b>Kernel Panic</b><br><sub>a stack trace in red</sub></td>
+</tr>
+</table>
+
 ## Install
 
 You need **Claude Code 2.1.325 or later** (`claude --version`, `claude update`). The wallpapers draw in the **Code tab of Claude Desktop**; a plain terminal keeps its own look.
@@ -182,9 +206,9 @@ Then start a new session in the Code tab.
 | --- | --- |
 | `/wallpaper` | The picker above the prompt: pick a mode, then a scene. Click, or press `1` to `9` for a scene, `f` `c` `n` `s` `e` for a mode, `0` for off. |
 | `/wallpaper aurora` | A scene by name (try `/wallpaper list` for every key). |
-| `/wallpaper work` | A random **Focus** scene. Also `chill`, `nature`, `space`, and `enjoy` (Energy). |
+| `/wallpaper work` | A random **Focus** scene. Also `chill`, `nature`, `space`, `dev` (hardcore coder), and `enjoy` (Energy). |
 | `/wallpaper next` | The next scene in the current mode. |
-| `/wallpaper random` | A surprise from all 51. |
+| `/wallpaper random` | A surprise from all 61. |
 | `/wallpaper off` | No wallpaper, the app's own look. |
 
 Your pick is remembered for the next session. The first run starts on **Silicon**.

@@ -1,5 +1,5 @@
-// ASCII Wallpaper Collection: 51 live ASCII-tile wallpapers behind the chat in Claude Desktop, in five modes
-// (Focus, Chill, Nature, Space, Energy). Each scene has its own colors and frosted panels, a /wallpaper picker sits
+// ASCII Wallpaper Collection: 61 live ASCII-tile wallpapers behind the chat in Claude Desktop, in six modes
+// (Focus, Chill, Nature, Space, Energy, Dev). Each scene has its own colors and frosted panels, a /wallpaper picker sits
 // above the prompt, and a handle setting signs your name into the scenes. The pick is kept for the next session.
 import { atom, read, update } from 'claude-code'
 import type { EngineInterface, Register, ThemeSetArgs } from 'claude-code'
@@ -10,20 +10,21 @@ import { makeColors } from './make-colors.js'
 
 const PLUGIN = 'ascii-wallpaper-collection'
 // bump with each change to a scene: a new scene name makes the app draw the new picture, not one it kept
-const BUILD = 2
+const BUILD = 3
 
 type Key = keyof typeof SCENES
 type Tone = 'dark' | 'light'
-type Mode = 'focus' | 'chill' | 'nature' | 'space' | 'energy'
+type Mode = 'focus' | 'chill' | 'nature' | 'space' | 'energy' | 'dev'
 type Wall = { key: Key; name: string; mode: Mode; tone: Tone; hue: number; accent: string; blurb: string }
 
-// The five modes. Work mode is Focus; enjoy mode is Energy.
+// The six modes. Work mode is Focus; enjoy mode is Energy; Dev is for people who live in the terminal.
 const MODES: { key: Mode; name: string; blurb: string; hotkey: string; aliases: string[] }[] = [
   { key: 'focus', name: 'Focus', blurb: 'work mode: calm, readable, low-distraction', hotkey: 'f', aliases: ['work', 'deep', 'calm'] },
   { key: 'chill', name: 'Chill', blurb: 'cozy and slow', hotkey: 'c', aliases: ['cozy', 'relax'] },
   { key: 'nature', name: 'Nature', blurb: 'weather, water and mountains', hotkey: 'n', aliases: ['outdoors', 'weather'] },
   { key: 'space', name: 'Space', blurb: 'the dark between things', hotkey: 's', aliases: ['cosmos', 'sky'] },
   { key: 'energy', name: 'Energy', blurb: 'enjoy mode: loud, bright, moving', hotkey: 'e', aliases: ['enjoy', 'fun', 'hype', 'play'] },
+  { key: 'dev', name: 'Dev', blurb: 'hardcore coder: dark, moody, minimal', hotkey: 'd', aliases: ['code', 'coder', 'hacker', 'hardcore', 'hard'] },
 ]
 
 // name, key, mode, tone, hue, accent, one-line blurb
@@ -85,6 +86,17 @@ const WALLS: Wall[] = (
     ['Snake', 'snake', 'energy', 'dark', 140, '#5aff8a', 'a long snake and apples'],
     ['Tetris Rain', 'tetris', 'energy', 'dark', 245, '#ffd23d', 'pieces falling in two wells'],
     ['Volcano', 'volcano', 'energy', 'dark', 10, '#ff9a3a', 'lava bombs and embers'],
+    // Dev
+    ['Vim Night', 'vim', 'dev', 'dark', 228, '#7aa2f7', 'a modal editor at 2am'],
+    ['Hex Dump', 'hexdump', 'dev', 'dark', 175, '#56d4c6', 'bytes and a scanning band'],
+    ['Assembly', 'asm', 'dev', 'dark', 38, '#e0af68', 'an instruction pointer walks'],
+    ['Sorting', 'sorting', 'dev', 'dark', 345, '#f7768e', 'bars and a comparing cursor'],
+    ['Big O', 'bigO', 'dev', 'dark', 215, '#7dcfff', 'six growth curves'],
+    ['Diff', 'diff', 'dev', 'dark', 105, '#9ece6a', 'hunks, adds and removes'],
+    ['Green CI', 'tests', 'dev', 'dark', 140, '#3fb950', 'a test matrix going green'],
+    ['The Void', 'voidCursor', 'dev', 'dark', 230, '#a9b1d6', 'a prompt and a cursor'],
+    ['Compiler', 'compiler', 'dev', 'dark', 265, '#bb9af7', 'a syntax tree being walked'],
+    ['Kernel Panic', 'panic', 'dev', 'dark', 355, '#ff5f56', 'a stack trace in red'],
   ] as [string, Key, Mode, Tone, number, string, string][]
 ).map(([name, key, mode, tone, hue, accent, blurb]) => ({ name, key, mode, tone, hue, accent, blurb }))
 
@@ -177,7 +189,7 @@ export const register: Register = (on, options) => {
     await $.command.register({
       name: 'wallpaper',
       description: 'Live ASCII wallpapers behind the chat: pick one, a mode, or turn it off',
-      argumentHint: 'a scene | work | chill | nature | space | enjoy | next | random | list | off',
+      argumentHint: 'a scene | work | chill | nature | space | enjoy | dev | next | random | list | off',
     })
 
     const saved = await $.store.get('wall')

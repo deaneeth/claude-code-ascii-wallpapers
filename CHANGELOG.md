@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.1.0
+
+- New **Dev** mode for hardcore coders: 10 dark, moody, minimal scenes (Vim Night, Hex Dump, Assembly, Sorting, Big O, Diff, Green CI, The Void, Compiler, Kernel Panic). The collection is now **61 scenes in six modes**.
+- `/wallpaper dev` (also `code`, `coder`, `hacker`) picks a random Dev scene; `d` opens the mode in the picker.
+- New social preview image.
+
 ## 2.0.0
 
 - The collection grows from 11 to **51 scenes**, in five modes: Focus (work mode), Chill, Nature, Space and Energy (enjoy mode).

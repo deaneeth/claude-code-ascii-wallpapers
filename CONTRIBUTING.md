@@ -7,7 +7,7 @@ A scene is one function that takes the user's handle and returns an SVG string. 
 | File | What is in it |
 | --- | --- |
 | `hooks/engine.js` | The drawing helpers every scene shares. |
-| `hooks/scenes-focus.js`, `scenes-chill.js`, `scenes-nature.js`, `scenes-space.js`, `scenes-energy.js` | One file per mode, one function per scene. |
+| `hooks/scenes-focus.js`, `scenes-chill.js`, `scenes-nature.js`, `scenes-space.js`, `scenes-energy.js`, `scenes-dev.js` | One file per mode, one function per scene. |
 | `hooks/legacy.js` | The first eleven scenes. |
 | `hooks/art.js` | Gathers every scene into `SCENES`. |
 | `hooks/register.tsx` | The plugin: the `WALLS` table (name, mode, tone, hue, accent), palettes, `/wallpaper`, and the picker. |

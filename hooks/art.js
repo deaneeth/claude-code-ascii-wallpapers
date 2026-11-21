@@ -5,5 +5,6 @@ import { CHILL } from './scenes-chill.js'
 import { NATURE } from './scenes-nature.js'
 import { SPACE } from './scenes-space.js'
 import { ENERGY } from './scenes-energy.js'
+import { DEV } from './scenes-dev.js'
 
-export const SCENES = { ...LEGACY, ...FOCUS, ...CHILL, ...NATURE, ...SPACE, ...ENERGY }
+export const SCENES = { ...LEGACY, ...FOCUS, ...CHILL, ...NATURE, ...SPACE, ...ENERGY, ...DEV }

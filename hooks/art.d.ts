@@ -5,5 +5,6 @@ export type SceneKey =
   | 'mist' | 'dunes' | 'canyon' | 'oceanSunset' | 'waterfall' | 'deepSea' | 'bamboo' | 'thunder'
   | 'nebula' | 'galaxy' | 'blackHole' | 'rocket' | 'meteors' | 'warp'
   | 'equalizer' | 'neonCity' | 'fireworks' | 'disco' | 'plasma' | 'invaders' | 'pong' | 'snake' | 'tetris' | 'volcano'
+  | 'vim' | 'hexdump' | 'asm' | 'sorting' | 'bigO' | 'diff' | 'tests' | 'voidCursor' | 'compiler' | 'panic'
 
 export const SCENES: Record<SceneKey, (name: string) => string>
